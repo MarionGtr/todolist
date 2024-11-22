@@ -31,7 +31,7 @@ router.get('/readTaskByID/:id', (req, res) => {
     });
 })
 
-//route mise à jour utilisateur
+//route mise à jour task
 router.post('/updateTask/:id', (req, res) => {
     const { id} = req.params;
     const {nom_task, description} = req.body;
@@ -44,7 +44,7 @@ router.post('/updateTask/:id', (req, res) => {
     });
 });
 
-//route suppression utilisateur
+//route suppression task
 router.post('/deleteTask/:id', (req, res) => {
     const {id}  = req.params
     const deleteTask = "DELETE FROM tasks WHERE id_task = ?;"

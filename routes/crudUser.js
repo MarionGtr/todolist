@@ -2,6 +2,7 @@ const express = require('express');
 const bdd = require('../bdd');
 const router = express.Router();
 
+
 //route création utilisateur
 router.post('/createUser', (req, res) => {
     const { nom, mail, mdp } = req.body;
