@@ -1,13 +1,16 @@
 const express = require('express');
 const bdd = require('../bdd');
 const router = express.Router();
+const jwt = require('jsonwebtoken')
+
 
 
 //route création utilisateur
 router.post('/createUser', (req, res) => {
     const { nom, mail, mdp } = req.body;
+    const hashedPassword = bcrypt.hashSynch(mdp, 1)
     const insertUser = 'insert into users (nom, mail, mdp) values (?,?,?);';
-    bdd.query(insertUser, [nom, mail, mdp], (res, erreur) => {
+    bdd.query(insertUser, [nom, mail, hashedPassword], (res, erreur) => {
         if (erreur) throw erreur;
         //res.send("user inscrit");
         // res.redirect('http://localhost:5173/createUser');
@@ -56,6 +59,18 @@ router.post('/deleteUser/:id', (req, res) => {
         // res.redirect('../delete.html');
     });
 });
+
+//route connexion utilisateur
+router.post('connexion' , (req,res) => {
+    const {mail, mdp} = req.body
+
+})
+
+// const token = jwt.sign({id:user.idUser}, 'secretkey' , {expiresIn : '3h'})
+//res.json({token})
+// } else {
+//     res.status(401).send('password incorrect')
+// }
 
 
 
